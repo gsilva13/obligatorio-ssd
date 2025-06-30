@@ -1,0 +1,36 @@
+{
+  "name": "tienda-alemana-chatbot-backend",
+  "version": "1.0.0",
+  "description": "Backend para chatbot de Tienda Alemana usando LangChain, Ollama y RAG",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest",
+    "setup-vector-store": "node src/scripts/setupVectorStore.js"
+  },
+  "keywords": ["chatbot", "langchain", "ollama", "rag", "express"],
+  "author": "Tienda Alemana Team",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "dotenv": "^16.3.1",
+    "langchain": "^0.1.36",
+    "@langchain/community": "^0.0.53",
+    "@langchain/ollama": "^0.0.2",
+    "pdf-parse": "^1.1.1",
+    "faiss-node": "^0.5.1",
+    "@langchain/openai": "^0.0.28",
+    "multer": "^1.4.5-lts.1",
+    "winston": "^3.11.0",
+    "joi": "^17.11.0",
+    "rate-limiter-flexible": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3"
+  }
+}
