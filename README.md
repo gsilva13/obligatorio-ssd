@@ -1,4 +1,10 @@
-# 🤖 Tienda Alemana - Chatbot RAG
+# Obligatorio IA - Sistemas de soporte de decisión
+Realizado por:
+- Fernando Spillere - 274924
+- Guillermo Silva - (nro de Estudiante)
+- Gimena Alamón - (nro de Estudiante)
+
+## 🤖 Tienda Alemana - Chatbot RAG
 
 Sistema de chatbot inteligente para Tienda Alemana con arquitectura RAG (Retrieval-Augmented Generation) que responde preguntas sobre productos, precios, ubicaciones y sucursales basándose en documentos PDF.
 
