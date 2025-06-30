@@ -6,7 +6,7 @@ const path = require("path");
 
 // Importar rutas
 const chatRoutes = require("./routes/chat");
-const testChatRoutes = require("./routes/test-chat");
+// const testChatRoutes = require("./routes/test-chat"); // Comentado: archivo no existe
 const healthRoutes = require("./routes/health");
 const documentsRoutes = require("./routes/documents");
 
@@ -28,7 +28,11 @@ app.use(
     origin:
       process.env.NODE_ENV === "production"
         ? ["https://tudominio.com"]
-        : ["http://localhost:3000", "http://localhost:5173"],
+        : [
+            "http://localhost:3000",
+            "http://localhost:5173",
+            "http://localhost:8080",
+          ],
     credentials: true,
   })
 );
@@ -49,7 +53,7 @@ app.use((req, res, next) => {
 // Rutas
 app.use("/api/health", healthRoutes);
 app.use("/api/chat", chatRoutes);
-app.use("/api/test-chat", testChatRoutes);
+// app.use("/api/test-chat", testChatRoutes); // Comentado: archivo no existe
 app.use("/api/documents", documentsRoutes);
 
 // Ruta raíz

@@ -5,6 +5,7 @@ API REST para la gestión y procesamiento de documentos PDF que alimentan el sis
 ## 📋 Descripción
 
 Esta API permite:
+
 - **Subir nuevos documentos PDF** para expandir la base de conocimiento
 - **Configurar el vector store** desde PDFs por defecto
 - **Consultar el estado** de documentos y vector store
@@ -19,14 +20,17 @@ http://localhost:3001/api/documents
 ## 📚 Endpoints Disponibles
 
 ### 1. GET /status
+
 **Verificar estado de documentos y vector store**
 
 #### Request
+
 ```bash
 GET /api/documents/status
 ```
 
 #### Response Exitosa
+
 ```json
 {
   "success": true,
@@ -50,6 +54,7 @@ GET /api/documents/status
 ```
 
 #### Ejemplo de Uso
+
 ```bash
 # PowerShell
 Invoke-WebRequest -Uri "http://localhost:3001/api/documents/status" -Method GET
@@ -64,17 +69,20 @@ curl -X GET http://localhost:3001/api/documents/status
 ---
 
 ### 2. POST /setup
+
 **Configurar vector store desde PDFs por defecto**
 
 Procesa todos los archivos PDF ubicados en la carpeta `Backend/data/pdfs/` y crea/actualiza el vector store.
 
 #### Request
+
 ```bash
 POST /api/documents/setup
 Content-Type: application/json
 ```
 
 #### Response Exitosa
+
 ```json
 {
   "success": true,
@@ -92,6 +100,7 @@ Content-Type: application/json
 ```
 
 #### Ejemplo de Uso
+
 ```bash
 # PowerShell
 Invoke-WebRequest -Uri "http://localhost:3001/api/documents/setup" -Method POST
@@ -103,20 +112,24 @@ curl -X POST http://localhost:3001/api/documents/setup
 ---
 
 ### 3. POST /upload
+
 **Subir y procesar nuevos archivos PDF**
 
 Permite subir uno o múltiples archivos PDF que serán procesados y agregados al vector store.
 
 #### Request
+
 ```bash
 POST /api/documents/upload
 Content-Type: multipart/form-data
 ```
 
 **Form Data:**
+
 - `pdfs`: Archivo(s) PDF (máximo 10 archivos, 10MB cada uno)
 
 #### Response Exitosa
+
 ```json
 {
   "success": true,
@@ -131,6 +144,7 @@ Content-Type: multipart/form-data
 ```
 
 #### Errores Comunes
+
 ```json
 // Archivo demasiado grande
 {
@@ -154,6 +168,7 @@ Content-Type: multipart/form-data
 #### Ejemplos de Uso
 
 **Subir un archivo:**
+
 ```bash
 # PowerShell (usando CMD internamente)
 cmd /c 'curl -X POST -F "pdfs=@\"C:\ruta\a\tu\archivo.pdf\"" http://localhost:3001/api/documents/upload'
@@ -163,6 +178,7 @@ curl -X POST -F "pdfs=@/ruta/a/tu/archivo.pdf" http://localhost:3001/api/documen
 ```
 
 **Subir múltiples archivos:**
+
 ```bash
 # curl
 curl -X POST \
@@ -175,16 +191,19 @@ curl -X POST \
 ---
 
 ### 4. DELETE /reset
+
 **Reiniciar vector store (desarrollo)**
 
 Elimina completamente el vector store. Útil para desarrollo y testing.
 
 #### Request
+
 ```bash
 DELETE /api/documents/reset
 ```
 
 #### Response Exitosa
+
 ```json
 {
   "success": true,
@@ -196,6 +215,7 @@ DELETE /api/documents/reset
 ```
 
 #### Ejemplo de Uso
+
 ```bash
 # PowerShell
 Invoke-WebRequest -Uri "http://localhost:3001/api/documents/reset" -Method DELETE
@@ -207,6 +227,7 @@ curl -X DELETE http://localhost:3001/api/documents/reset
 ## 🔄 Flujos de Trabajo Típicos
 
 ### Configuración Inicial (Recomendado)
+
 ```bash
 # 1. Verificar estado
 curl http://localhost:3001/api/documents/status
@@ -219,6 +240,7 @@ curl http://localhost:3001/api/documents/status
 ```
 
 ### Agregar Nuevos Documentos
+
 ```bash
 # 1. Subir nuevos PDFs
 curl -X POST -F "pdfs=@mi-nuevo-catalogo.pdf" http://localhost:3001/api/documents/upload
@@ -228,6 +250,7 @@ curl http://localhost:3001/api/documents/status
 ```
 
 ### Reset y Reconfiguración (Desarrollo)
+
 ```bash
 # 1. Resetear vector store
 curl -X DELETE http://localhost:3001/api/documents/reset
@@ -257,6 +280,7 @@ Backend/
 ## ⚙️ Configuración
 
 ### Variables de Entorno
+
 ```env
 # Configuración de documentos
 PDFS_FOLDER=./data/pdfs          # Carpeta de PDFs por defecto
@@ -268,6 +292,7 @@ CHUNK_OVERLAP=200               # Overlap entre chunks
 ```
 
 ### Límites de Upload
+
 - **Tamaño máximo por archivo**: 10MB
 - **Número máximo de archivos**: 10 por request
 - **Formatos permitidos**: Solo PDF (.pdf)
@@ -275,6 +300,7 @@ CHUNK_OVERLAP=200               # Overlap entre chunks
 ## 🧪 Testing de la API
 
 ### Script de Prueba Completo
+
 ```bash
 #!/bin/bash
 echo "=== Testing API de Documentos ==="
@@ -295,6 +321,7 @@ echo -e "\n=== Testing completado ==="
 ```
 
 ### Verificación Manual (PowerShell)
+
 ```powershell
 # Test completo de la API
 Write-Host "=== Testing API de Documentos ===" -ForegroundColor Green
@@ -317,12 +344,15 @@ Write-Host "`n=== Testing completado ===" -ForegroundColor Green
 ## 📊 Métricas y Logging
 
 ### Logs Relevantes
+
 Los logs de la API se registran en:
+
 - **Nivel INFO**: Operaciones exitosas, archivos procesados
 - **Nivel ERROR**: Errores de procesamiento, archivos corruptos
 - **Nivel WARN**: Archivos no encontrados, permisos
 
 ### Ejemplo de Logs
+
 ```
 [INFO] Procesando 1 archivos PDF
 [INFO] Configurando vector store desde PDFs por defecto
@@ -334,6 +364,7 @@ Los logs de la API se registran en:
 ## 🚨 Solución de Problemas
 
 ### Error: "No se proporcionaron archivos PDF"
+
 ```bash
 # Verificar que el archivo existe
 ls -la mi-archivo.pdf
@@ -343,6 +374,7 @@ curl -X POST -F "pdfs=@mi-archivo.pdf" http://localhost:3001/api/documents/uploa
 ```
 
 ### Error: "Archivo demasiado grande"
+
 ```bash
 # Verificar tamaño del archivo
 ls -lh mi-archivo.pdf
@@ -351,12 +383,14 @@ ls -lh mi-archivo.pdf
 ```
 
 ### Error: "Vector store no encontrado"
+
 ```bash
 # Ejecutar setup inicial
 curl -X POST http://localhost:3001/api/documents/setup
 ```
 
 ### Error 500: Error interno del servidor
+
 ```bash
 # Verificar logs del servidor
 tail -f Backend/logs/error.log
@@ -368,18 +402,21 @@ curl http://localhost:11434/api/version
 ## 📋 Checklist de Verificación
 
 ### ✅ Pre-requisitos
+
 - [ ] Servidor backend ejecutándose en puerto 3001
 - [ ] Ollama ejecutándose en puerto 11434
 - [ ] Modelos descargados (llama3.2:1b, nomic-embed-text)
 - [ ] Archivos PDF en `Backend/data/pdfs/`
 
 ### ✅ Tests de Endpoints
+
 - [ ] GET /status responde con información correcta
 - [ ] POST /setup procesa PDFs exitosamente
 - [ ] POST /upload acepta archivos PDF
 - [ ] DELETE /reset elimina vector store
 
 ### ✅ Funcionalidad RAG
+
 - [ ] Vector store se crea correctamente
 - [ ] Documentos se procesan en chunks
 - [ ] Embeddings se generan sin errores
@@ -395,4 +432,4 @@ curl http://localhost:11434/api/version
 
 ---
 
-*Documentación generada automáticamente - Última actualización: Junio 2025*
+_Documentación generada automáticamente - Última actualización: Junio 2025_
