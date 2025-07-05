@@ -1,7 +1,7 @@
 # Obligatorio IA - Sistemas de soporte de decisión
 Realizado por:
 - Fernando Spillere - 274924
-- Guillermo Silva - (nro de Estudiante)
+- Guillermo Silva - 210802
 - Gimena Alamón - (nro de Estudiante)
 
 ## 🤖 Tienda Alemana - Chatbot RAG
