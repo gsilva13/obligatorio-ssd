@@ -2,7 +2,7 @@
 Realizado por:
 - Fernando Spillere - 274924
 - Guillermo Silva - 210802
-- Gimena Alamón - (nro de Estudiante)
+- Gimena Alamón - 243518
 
 ## 🤖 Tienda Alemana - Chatbot RAG
 
